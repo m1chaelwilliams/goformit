@@ -1,0 +1,77 @@
+{
+  "first_prompt": "name",
+  "prompts": {
+    "name": {
+      "id": "name",
+      "type": "input",
+      "title": "Enter your name:",
+      "description": "Enter your first name only.",
+      "placeholder": "John Doe",
+      "answer_type": "string",
+      "next": {
+        "_": "favorite_lang"
+      }
+    },
+    "favorite_lang": {
+      "id": "favorite_lang",
+      "type": "selection",
+      "answer_type": "string",
+      "title": "Enter your favorite programming language:",
+      "description": "Hint: It's Go",
+      "choices": [
+        "go",
+        "rust",
+        "typescript"
+      ],
+      "next": {
+        "rust": "[[end]]",
+        "_": "favorite_editor"
+      }
+    },
+    "favorite_editor": {
+      "id": "favorite_editor",
+      "type": "selection",
+      "answer_type": "string",
+      "title": "Enter your favorite code editor:",
+      "description": "Hint: It's Neovim",
+      "choices": [
+        "nvim",
+        "vscode",
+        "intellij"
+      ],
+      "next": {
+        "_": "js_frameworks"
+      }
+    },
+    "js_frameworks": {
+      "id": "js_frameworks",
+      "type": "checkbox",
+      "answer_type": "string",
+      "title": "Select all JS frameworks you have used",
+      "choices": [
+        "NextJS",
+        "SvelteKit",
+        "VueJS"
+      ],
+      "next": {
+        "NextJS": "cli_or_gui",
+        "SvelteKit+VueJS,SvelteKit+NextJS": "favorite_lang",
+        "_": "[[end]]"
+      }
+    },
+    "cli_or_gui": {
+      "id": "cli_or_gui",
+      "type": "selection",
+      "answer_type": "string",
+      "title": "Select your favorite of the two.",
+      "choices": [
+        "CLI",
+        "GUI"
+      ],
+      "next": {
+        "CLI": "favorite_editor",
+        "_": "[[end]]"
+      }
+    }
+  }
+}

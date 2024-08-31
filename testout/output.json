@@ -1,0 +1,32 @@
+{
+  "response_groups": {
+    "myprompt": [
+      {
+        "id": "id",
+        "group": "myprompt",
+        "response": "myprompt",
+        "ResponseNumber": 1
+      },
+      {
+        "id": "title",
+        "group": "myprompt",
+        "response": "enter your favorite language",
+        "ResponseNumber": 1
+      }
+    ],
+    "prompt_again": [
+      {
+        "id": "id",
+        "group": "prompt_again",
+        "response": "prompt_again",
+        "ResponseNumber": 1
+      },
+      {
+        "id": "title",
+        "group": "prompt_again",
+        "response": "enter your favorite js framework",
+        "ResponseNumber": 1
+      }
+    ]
+  }
+}

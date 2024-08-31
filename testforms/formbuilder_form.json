@@ -1,0 +1,49 @@
+{
+  "first_prompt": "menu",
+  "vars": {
+    "group_id": "res_0"
+  },
+  "prompts": {
+    "menu": {
+      "id": "menu",
+      "group": "[[void]]",
+      "type": "selection",
+      "title": "form builder",
+      "choices": [
+        "Create prompt",
+        "Exit"
+      ],
+      "next": {
+        "Create prompt": "id",
+        "_": "[[end]]"
+      }
+    },
+    "id": {
+      "id": "id",
+      "bind_submit": "[[group_id]]",
+      "group": "[[group_id]]",
+      "type": "input",
+      "title": "Enter prompt ID:",
+      "description": "Enter a unique ID used to identify the prompt",
+      "placeholder": "my_prompt",
+      "answer_type": "string",
+      "next": {
+        "exit": "[[end]]",
+        "_": "title"
+      }
+    },
+    "title": {
+      "id": "title",
+      "group": "[[group_id]]",
+      "type": "input",
+      "title": "Enter prompt ID:",
+      "description": "Enter a title for the prompt",
+      "placeholder": "Ex. Enter your favorite food",
+      "answer_type": "string",
+      "next": {
+        "exit": "[[end]]",
+        "_": "menu"
+      }
+    }
+  }
+}
