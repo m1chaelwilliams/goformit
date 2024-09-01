@@ -9,8 +9,13 @@ import (
 	tea "github.com/charmbracelet/bubbletea"
 
 	"goformit/dispatch"
+	"goformit/logging"
 	"goformit/prompttree"
 	"goformit/serialization"
+)
+
+const (
+	PROMPT_NOT_FOUND = "not_found"
 )
 
 // used to lazily set the context after a model has been created
@@ -19,6 +24,7 @@ type FormModel interface {
 	SetCTX(ctx *AppContext)
 }
 
+// the global state of the application
 type AppContext struct {
 	Theme        Theme
 	dispatcher   dispatch.PromptModelDispatcher
@@ -32,6 +38,7 @@ func (a *AppContext) FormResult() *serialization.FormResult {
 	return a.formResult
 }
 
+// creates the global app context from form json
 func NewAppContext(
 	formJSON *serialization.FormJSON,
 	dispatcher dispatch.PromptModelDispatcher,
@@ -62,9 +69,13 @@ func (a *AppContext) ActiveModel() tea.Model {
 	return a.activePrompt.Model
 }
 
+// attempts to process model's response and grab the next model
+// errors if last prompt, error is handled by model to exit gracefully
 func (a *AppContext) NextModel(response []string) (tea.Model, error) {
+	// finds all variables (variables are wrapped in [[]])
 	re := regexp.MustCompile(`\[\[(.*?)\]\]`)
 
+	// grabs optional submit event
 	bindSubmit := a.formJSON.Prompts[a.activePrompt.Id].BindSubmit
 	if bindSubmit != nil {
 		varName := re.ReplaceAllStringFunc(*bindSubmit, func(s string) string {
@@ -92,22 +103,21 @@ func (a *AppContext) NextModel(response []string) (tea.Model, error) {
 		a.formResult.AddPromptResult(&promptResult)
 	}
 
-	fmt.Printf("Submitting response: %v\n", response)
+	logging.AppLogger.Log("CONTEXT", "Submitting response: %v\n", response)
 
-	nextPromptID := "not_found"
+	nextPromptID := PROMPT_NOT_FOUND
 
+	// find the next prompt id
 outer:
 	for _, qualifier := range a.activePrompt.Qualifiers {
 		if qualifier.Qualifies(response) {
 			nextPromptID = qualifier.ModelID()
 			break outer
-			// if nextPromptID != "[[end]]" {
-			// 	break outer
-			// }
 		}
 	}
 
-	if nextPromptID == "not_found" {
+	// go to catchall (base case) next if no qualifiers
+	if nextPromptID == PROMPT_NOT_FOUND {
 		nextPromptID = a.formJSON.Prompts[a.activePrompt.Id].Next["_"]
 	}
 

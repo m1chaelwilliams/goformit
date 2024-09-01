@@ -31,7 +31,7 @@ go build
 Ensure everything works by trying out one of the test forms:
 
 ```shell
-goformit -i testforms/sample_form.json -o out.json (-v)
+./goformit -i testforms/sample_form.json -o out.json (-v)
 ```
 
 - `i` is the input filepath
@@ -122,7 +122,7 @@ This project is licensed under [MIT](./LICENSE).
 
 ## Contributing
 
-Any contributions are welcome! Please take a look at the [roadmap]() to see what is
+Any contributions are welcome! Please take a look at the [roadmap](./ROADMAP.md) to see what is
 most needed.
 
 ## Contributors

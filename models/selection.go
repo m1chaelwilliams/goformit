@@ -1,13 +1,12 @@
 package models
 
 import (
-	"fmt"
-
 	"github.com/charmbracelet/bubbles/list"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
 
 	"goformit/context"
+	"goformit/logging"
 	"goformit/serialization"
 )
 
@@ -43,7 +42,7 @@ func (s *SelectionModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			if err == nil {
 				return m, nil
 			} else {
-				fmt.Println(err)
+				logging.AppLogger.Log("selection", err.Error())
 				return s, tea.Quit
 			}
 		}

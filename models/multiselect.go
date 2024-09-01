@@ -72,7 +72,7 @@ func (m *MultiSelectModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			if err == nil {
 				return nextModel, nil
 			} else {
-				fmt.Println(err)
+				logging.AppLogger.Log("CHECKBOX", err.Error())
 				return m, tea.Quit
 			}
 		}
