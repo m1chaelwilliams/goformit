@@ -1,0 +1,32 @@
+{
+  "response_groups": {
+    "myprompttttt": [
+      {
+        "id": "id",
+        "group": "myprompttttt",
+        "response": "myprompttttt",
+        "ResponseNumber": 1
+      },
+      {
+        "id": "title",
+        "group": "myprompttttt",
+        "response": "gyro",
+        "ResponseNumber": 1
+      }
+    ],
+    "woohoo": [
+      {
+        "id": "id",
+        "group": "woohoo",
+        "response": "woohoo",
+        "ResponseNumber": 1
+      },
+      {
+        "id": "title",
+        "group": "woohoo",
+        "response": "exit",
+        "ResponseNumber": 1
+      }
+    ]
+  }
+}

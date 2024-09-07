@@ -2,13 +2,12 @@ package models
 
 import (
 	"fmt"
+	"goformit/internal/context"
+	"goformit/internal/logging"
+	"goformit/internal/serialization"
 
 	"github.com/charmbracelet/bubbles/list"
 	tea "github.com/charmbracelet/bubbletea"
-
-	"goformit/context"
-	"goformit/logging"
-	"goformit/serialization"
 )
 
 type MultiSelectModel struct {

@@ -3,15 +3,14 @@ package context
 import (
 	"errors"
 	"fmt"
+	"goformit/internal/dispatch"
+	"goformit/internal/logging"
+	"goformit/internal/prompttree"
+	"goformit/internal/serialization"
 	"regexp"
 	"strings"
 
 	tea "github.com/charmbracelet/bubbletea"
-
-	"goformit/dispatch"
-	"goformit/logging"
-	"goformit/prompttree"
-	"goformit/serialization"
 )
 
 const (

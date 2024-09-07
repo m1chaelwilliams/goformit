@@ -3,12 +3,11 @@ package prompttree
 import (
 	"errors"
 	"fmt"
+	"goformit/internal/dispatch"
+	"goformit/internal/logging"
+	"goformit/internal/serialization"
 
 	tea "github.com/charmbracelet/bubbletea"
-
-	"goformit/dispatch"
-	"goformit/logging"
-	"goformit/serialization"
 )
 
 type PromptNode struct {

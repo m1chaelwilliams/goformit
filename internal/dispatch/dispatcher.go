@@ -1,9 +1,9 @@
 package dispatch
 
 import (
-	tea "github.com/charmbracelet/bubbletea"
+	"goformit/internal/serialization"
 
-	"goformit/serialization"
+	tea "github.com/charmbracelet/bubbletea"
 )
 
 type PromptModelDispatcher func(promptJSON *serialization.PromptJSON) tea.Model

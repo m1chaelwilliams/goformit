@@ -2,12 +2,15 @@
 
 A runtime for terminal UI forms
 
+>[!warning] This product is in alpha. New features will be breaking until the project reached 1.0.
+
 ## Features
 
 - Interactive Terminal User Interface (TUI)
 - JSON support
 - Non-Linear Forms
 - State management
+- 🚧 Experimental go package
 
 ## Installation & Usage
 

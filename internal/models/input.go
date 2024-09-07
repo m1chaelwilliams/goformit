@@ -1,13 +1,13 @@
 package models
 
 import (
+	"goformit/internal/context"
+	"goformit/internal/logging"
+	"goformit/internal/serialization"
+
 	"github.com/charmbracelet/bubbles/textinput"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
-
-	"goformit/context"
-	"goformit/logging"
-	"goformit/serialization"
 )
 
 type InputModel struct {

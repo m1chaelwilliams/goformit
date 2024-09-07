@@ -1,10 +1,9 @@
 package prompttree
 
 import (
+	"goformit/internal/logging"
 	"sort"
 	"strings"
-
-	"goformit/logging"
 )
 
 // used to check if a response *qualifies* for a new model
