@@ -2,11 +2,12 @@ package goformit
 
 import (
 	"encoding/json"
+
+	tea "github.com/charmbracelet/bubbletea"
+
 	"goformit/internal/context"
 	"goformit/internal/models"
 	"goformit/internal/serialization"
-
-	tea "github.com/charmbracelet/bubbletea"
 )
 
 type Form struct {
@@ -34,12 +35,7 @@ func (f *Form) Result() (string, error) {
 	return string(contents), nil
 }
 
-func NewFormFromJSON(filePathWithExtension string) (*Form, error) {
-	formJSON, err := serialization.NewFormJSON(filePathWithExtension)
-	if err != nil {
-		return nil, err
-	}
-
+func newFormFromJSONInternal(formJSON *serialization.FormJSON) (*Form, error) {
 	ctx, err := context.NewAppContext(
 		formJSON,
 		func(promptJSON *serialization.PromptJSON) tea.Model {
@@ -62,4 +58,24 @@ func NewFormFromJSON(filePathWithExtension string) (*Form, error) {
 		formJSON: formJSON,
 		ctx:      ctx,
 	}, nil
+}
+
+// creates a new form from a json content blob
+func NewFormFromJSONContent(content []byte) (*Form, error) {
+	formJSON, err := serialization.NewFormJSONContent(content)
+	if err != nil {
+		return nil, err
+	}
+
+	return newFormFromJSONInternal(formJSON)
+}
+
+// creates a new form from a json filepath
+func NewFormFromJSONFilepath(filePathWithExtension string) (*Form, error) {
+	formJSON, err := serialization.NewFormJSON(filePathWithExtension)
+	if err != nil {
+		return nil, err
+	}
+
+	return newFormFromJSONInternal(formJSON)
 }

@@ -3,11 +3,12 @@ package prompttree
 import (
 	"errors"
 	"fmt"
+
+	tea "github.com/charmbracelet/bubbletea"
+
 	"goformit/internal/dispatch"
 	"goformit/internal/logging"
 	"goformit/internal/serialization"
-
-	tea "github.com/charmbracelet/bubbletea"
 )
 
 type PromptNode struct {
@@ -32,9 +33,7 @@ func CreatePromptNode(
 
 	model := dispatcher(promptJSON)
 	if model == nil {
-		return nil, errors.New(
-			fmt.Sprintf("unsupported prompt type provided for model: %s", promptJSON.Id),
-		)
+		return nil, fmt.Errorf("unsupported prompt type provided for model: %s", promptJSON.Id)
 	}
 
 	logging.AppLogger.Log("prompttree", "creating prompt node: %s\n", promptJSON.Id)

@@ -24,13 +24,17 @@ type FormJSON struct {
 	Vars    map[string]string      `json:"vars"`
 }
 
+func NewFormJSONContent(contents []byte) (*FormJSON, error) {
+	var formJSON FormJSON
+	err := json.Unmarshal(contents, &formJSON)
+	return &formJSON, err
+}
+
 func NewFormJSON(path string) (*FormJSON, error) {
 	contents, err := os.ReadFile(path)
 	if err != nil {
 		return nil, err
 	}
 
-	var formJSON FormJSON
-	err = json.Unmarshal(contents, &formJSON)
-	return &formJSON, err
+	return NewFormJSONContent(contents)
 }

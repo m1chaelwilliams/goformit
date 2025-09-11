@@ -1,21 +1,21 @@
 package models
 
 import (
-	"goformit/internal/context"
-	"goformit/internal/logging"
-	"goformit/internal/serialization"
-
 	"github.com/charmbracelet/bubbles/list"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
+
+	"goformit/internal/context"
+	"goformit/internal/logging"
+	"goformit/internal/serialization"
 )
 
+// model for selecting an item from a list
 type SelectionModel struct {
 	listGroup list.Model
 	ctx       *context.AppContext
 }
 
-// Init implements tea.Model.
 func (s *SelectionModel) Init() tea.Cmd {
 	return nil
 }
@@ -24,16 +24,16 @@ func (s *SelectionModel) SetCTX(ctx *context.AppContext) {
 	s.ctx = ctx
 }
 
-// Update implements tea.Model.
 func (s *SelectionModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	var cmd tea.Cmd
 
 	switch msg := msg.(type) {
 	case tea.KeyMsg:
 		msgStr := msg.String()
-		if msgStr == "esc" {
+		switch msgStr {
+		case "esc":
 			return s, tea.Quit
-		} else if msgStr == "enter" {
+		case "enter":
 			selection := s.listGroup.SelectedItem().FilterValue()
 
 			m, err := s.ctx.NextModel([]string{
@@ -53,7 +53,6 @@ func (s *SelectionModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	return s, cmd
 }
 
-// View implements tea.Model.
 func (s *SelectionModel) View() string {
 	return lipgloss.JoinVertical(
 		lipgloss.Left,
@@ -69,8 +68,6 @@ func NewSelectionModelfromJSON(
 	for _, choice := range promptJSON.Choices {
 		items = append(items, NewListItem(choice))
 	}
-
-	// list.DefaultDelegate
 
 	listModel := list.New(items, NewListItemDelegate(), 80, len(items)*4)
 	listModel.Title = promptJSON.Title

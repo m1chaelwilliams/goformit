@@ -1,1 +1,0 @@
-- [ ] Make a "next model from response" module for `PromptNode`

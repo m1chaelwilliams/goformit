@@ -2,10 +2,11 @@ package main
 
 import (
 	"flag"
-	"goformit/internal/logging"
-	"goformit/pkg/goformit"
 	"log"
 	"os"
+
+	"goformit/internal/logging"
+	"goformit/pkg/goformit"
 )
 
 func main() {
@@ -18,7 +19,7 @@ func main() {
 		log.Fatal("no JSON input file")
 	}
 
-	form, err := goformit.NewFormFromJSON(*inputFile)
+	form, err := goformit.NewFormFromJSONFilepath(*inputFile)
 	if err != nil {
 		log.Fatal(err)
 	}
