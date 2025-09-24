@@ -2,7 +2,7 @@
 
 A runtime for terminal UI forms
 
->[!warning] This product is in alpha. New features will be breaking until the project reached 1.0.
+> [!warning] This product is in alpha. New features will be breaking until the project reached 1.0.
 
 ## Features
 
@@ -28,13 +28,13 @@ Next, `cd` into the directory and build the project:
 
 ```shell
 cd goformit
-go build
+go build cmd/runtime/main.go
 ```
 
 Ensure everything works by trying out one of the test forms:
 
 ```shell
-./goformit -i testforms/sample_form.json -o out.json (-v)
+./main -i testforms/sample_form.json -o out.json (-v)
 ```
 
 - `i` is the input filepath
