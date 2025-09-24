@@ -1,0 +1,18 @@
+{
+  "vars": {
+    "group_id": "default"
+  },
+  "first_prompt": "my_prompt_id",
+  "prompts": {
+    "my_prompt_id": {
+      "id": "my_prompt_id",
+      "group": "[[group_id]]",
+      "bind_submit": "[[group_id]]",
+      "type": "input",
+      "title": "Choose which group I end up in",
+      "next": {
+        "_": "[[end]]"
+      }
+    }
+  }
+}
